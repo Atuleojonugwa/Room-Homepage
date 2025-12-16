@@ -1,0 +1,47 @@
+import React from "react";
+import dark from "../assets/image-about-dark.jpg";
+import light from "../assets/image-about-light.jpg";
+
+function About() {
+  return (
+    <>
+      <div className="flex w-full h-100 ">
+        <div className="w-[30%] h-full">
+          <img
+            src={dark}
+            alt="dark furniture"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <div className="w-[40%] h-full bg-white flex flex-col justify-center px-12">
+          <div className="max-w-md mx-auto">
+            <h2 className="text-black font-bold uppercase tracking-[0.4em] mb-4 text-sm">
+              about our furniture
+            </h2>
+
+            <p className="text-gray-500 text-[12px] leading-5 font-medium">
+              Our multifunctional collection blends design and function to suit
+              your <br /> individual taste. Make each room unique, or pick a
+              cohesive theme that best <br /> express your interests and what
+              inspires you. Find the furniture pieces you <br /> need, from
+              traditional to contemporary styles or anything in between. <br />{" "}
+              Product specialists are available to help you create your dream
+              space.
+            </p>
+          </div>
+        </div>
+
+        <div className="w-[30%] h-full">
+          <img
+            src={light}
+            alt="Light furniture"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default About;

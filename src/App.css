@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+body{
+    font-family: var(--font-spartan);
+}
+:root {
+
+    --font-spartan: "League Spartan", sans-serif;
+
+    --grey-500: hsl(0, 0%, 63%);
+    --grey-800: hsl(0, 0%, 27%);
+}

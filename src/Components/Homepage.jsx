@@ -1,9 +1,15 @@
 import React from "react";
+import { useState } from "react";
 import hero1 from "../assets/desktop-image-hero-1.jpg";
+import hero2 from "../assets/desktop-image-hero-2.jpg";
+import hero3 from "../assets/desktop-image-hero-3.jpg";
 import logo from "../assets/logo.svg";
 
-const SliderButton = ({ children }) => (
-  <button className="bg-black w-20 h-20 flex items-center justify-center cursor-pointer hover:bg-(--grey-800) transition-colors focus:outline-none">
+const SliderButton = ({ children, onClick }) => (
+  <button
+    onClick={onClick}
+    className="bg-black w-20 h-20 flex items-center justify-center cursor-pointer hover:bg-(--grey-800) transition-colors focus:outline-none"
+  >
     {children}
   </button>
 );
@@ -35,15 +41,45 @@ const Angleleft = () => (
   </svg>
 );
 
+const Slides = [
+  {
+    id: 1,
+    Image: hero1,
+    title: "Discover innovative ways to decorate",
+    text: "We provide unmatched quality, comfort, and style for property owners across the country. Our experts combine form and function in bringing your vision to life. Create a room in your own style with our collection and make your property a reflection of you and what you love.",
+  },
+  {
+    id: 2,
+    Image: hero2,
+    title: "We are available all across the globe",
+    text: "With stores all over the world, it's easy for you to find furniture for your home or place of business. Locally, we’re in most major cities throughout the country. Find the branch nearest you using our store locator. Any questions? Don't hesitate to contact us today.",
+  },
+  {
+    id: 3,
+    Image: hero3,
+    title: "Manufactured with the best materials",
+    text: "Our modern furniture store provide a high level of quality. Our company has invested in advanced technology to ensure that every product is made as perfect and as consistent as possible. With three decades of experience in this industry, we understand what customers want for their home and office.",
+  },
+];
+
 function Homepage() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === Slides.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? Slides.length - 1 : prev - 1));
+  };
+
+  const activeSlide = Slides[currentSlide];
   return (
-    <div className="flex w-full">
-      <div
-        className="w-[66%] h-120 bg-cover bg-center px-7 py-6"
-        style={{ backgroundImage: `url(${hero1})` }}
-      >
-        <div className="flex items-center gap-12 p-8">
-          <img src={logo} alt="Room logo" className="" />
+    <div className="flex w-full h-150">
+      <div className="w-[58%] h-full relative">
+        <img src={activeSlide.Image} alt="hero-Image" className="w-full h-full object-cover" />
+        <div className=" absolute top-0 left-0 w-full flex items-center gap-12 p-12 pt-14">
+          <img src={logo} alt="Room logo"/>
           <nav className="flex items-center gap-7">
             {["home", "shop", "about", "contact"].map((item) => (
               <a
@@ -75,14 +111,10 @@ function Homepage() {
       <div className="w-[42%] flex relative flex-col justify-center px-20 ">
         <div className="max-w-md">
           <h1 className="leading-10 tracking-tight font-bold text-4xl  mb-6">
-            Discover innovative ways to decorate
+            {activeSlide.title}
           </h1>
           <p className="text-(--grey-500) text-[12px] leading-4 font-medium mb-5">
-            We provide unmatched quality, comfort, and style for property <br />{" "}
-            owners across the country. Our experts combine form and <br />{" "}
-            function in bringing your vision to life. Create a room in your{" "}
-            <br /> own style with our collection and make your property a <br />{" "}
-            reflection of you and what you love.
+            {activeSlide.text}
           </p>
         </div>
 
@@ -94,11 +126,11 @@ function Homepage() {
         </button>
 
         <div className="flex absolute bottom-0 left-0">
-          <SliderButton>
+          <SliderButton onClick={prevSlide}>
             <Angleleft />
           </SliderButton>
 
-          <SliderButton>
+          <SliderButton onClick={nextSlide}>
             <Angleright />
           </SliderButton>
         </div>

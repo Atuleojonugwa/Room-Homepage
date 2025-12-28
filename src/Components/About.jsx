@@ -5,8 +5,8 @@ import light from "../assets/image-about-light.jpg";
 function About() {
   return (
     <>
-      <div className="flex w-full h-100 ">
-        <div className="w-[30%] h-full">
+      <div className="flex flex-col md:flex-row w-full ">
+        <div className="md:w-[30%] w-full">
           <img
             src={dark}
             alt="dark furniture"
@@ -14,8 +14,8 @@ function About() {
           />
         </div>
 
-        <div className="w-[40%] h-full bg-white flex flex-col justify-center px-12">
-          <div className="max-w-md mx-auto">
+        <div className="md:w-[40%] w-full flex flex-col justify-center p-8 md:p-12 ">
+          {/* <div className="max-w-md mx-auto"> */}
             <h2 className="text-black font-bold uppercase tracking-[0.4em] mb-4 text-sm">
               about our furniture
             </h2>
@@ -29,10 +29,10 @@ function About() {
               Product specialists are available to help you create your dream
               space.
             </p>
-          </div>
+          {/* </div> */}
         </div>
 
-        <div className="w-[30%] h-full">
+        <div className="md:w-[30%] w-full">
           <img
             src={light}
             alt="Light furniture"

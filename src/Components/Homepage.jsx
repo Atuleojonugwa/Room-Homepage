@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import hero1 from "../assets/desktop-image-hero-1.jpg";
 import hero2 from "../assets/desktop-image-hero-2.jpg";
 import hero3 from "../assets/desktop-image-hero-3.jpg";
@@ -64,6 +64,22 @@ const Slides = [
 
 function Homepage() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [openMenu, setOpenMenu] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setOpenMenu(false); // Close mobile menu automatically on desktop
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+
+
+
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev === Slides.length - 1 ? 0 : prev + 1));
@@ -75,12 +91,18 @@ function Homepage() {
 
   const activeSlide = Slides[currentSlide];
   return (
-    <div className="flex w-full h-150">
-      <div className="w-[58%] h-full relative">
+    <div className="flex flex-col md:flex-row w-full md:h-150 sm:min-h-screen">
+      <div className="relative w-full md:w-[58%] h-[50vh] md:h-auto">
+
         <img src={activeSlide.Image} alt="hero-Image" className="w-full h-full object-cover" />
-        <div className=" absolute top-0 left-0 w-full flex items-center gap-12 p-12 pt-14">
-          <img src={logo} alt="Room logo"/>
-          <nav className="flex items-center gap-7">
+        <div className="absolute top-0 left-0 flex items-center  w-full pt-14 p-6 md:p-12 gap-12">
+          {/* Mobile menu icon */}
+          <button className="md:hidden text-white text-3xl" onClick={() => setOpenMenu(true)}>
+            ☰
+          </button>
+
+          <img src={logo} alt="Room logo" className="mx-auto md:mx-0" />
+          <nav className="hidden md:flex gap-8">
             {["home", "shop", "about", "contact"].map((item) => (
               <a
                 key={item}
@@ -106,21 +128,32 @@ function Homepage() {
             ))}
           </nav>
         </div>
+        {/* -------- Mobile Menu Overlay -------- */}
+        {openMenu && (
+          <div className="absolute top-0 left-0 w-full bg-white p-6 flex justify-between items-center z-50 shadow-lg">
+            <button onClick={() => setOpenMenu(false)} className="text-2xl">✕</button>
+            <nav className="flex gap-6 font-semibold">
+              {["home", "shop", "about", "contact"].map(i => (
+                <a key={i} className="uppercase">{i}</a>
+              ))}
+            </nav>
+          </div>
+        )}
       </div>
 
-      <div className="w-[42%] flex relative flex-col justify-center px-20 ">
-        <div className="max-w-md">
-          <h1 className="leading-10 tracking-tight font-bold text-4xl  mb-6">
-            {activeSlide.title}
-          </h1>
-          <p className="text-(--grey-500) text-[12px] leading-4 font-medium mb-5">
-            {activeSlide.text}
-          </p>
-        </div>
+      <div className="w-full md:w-[42%] flex flex-col justify-center p-10 md:px-20 gap-5">
+
+        <h1 className="text-3xl md:text-4xl font-bold leading-tight">
+          {activeSlide.title}
+        </h1>
+        <p className="text-(--grey-500) text-[12px] leading-4 font-medium mb-5">
+          {activeSlide.text}
+        </p>
+
 
         <button className="flex items-center gap-6 text-black uppercase tracking-[0.8em] text-sm font-bold hover:text-(--grey-500) cursor-pointer transition-colors duration-300">
           Shop Now
-          <span className="">
+          <span>
             <Iconarrow />
           </span>
         </button>
@@ -140,3 +173,5 @@ function Homepage() {
 }
 
 export default Homepage;
+
+

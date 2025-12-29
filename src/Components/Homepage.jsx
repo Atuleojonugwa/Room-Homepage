@@ -95,7 +95,8 @@ function Homepage() {
   const activeSlide = Slides[currentSlide];
   return (
     <div className="flex flex-col md:flex-row w-full md:h-150 sm:min-h-screen">
-      <div className="relative w-full md:w-[58%] h-[50vh] md:h-auto">
+
+      <div className="relative w-full md:w-[58%]  md:h-auto">
         <img src={activeSlide.Image} alt="hero-Image" className="w-full h-full object-cover" />
 
 
@@ -115,7 +116,7 @@ function Homepage() {
             className="md:hidden text-2xl"
             onClick={() => setOpenMenu(!openMenu)}
           >
-            <img src={openMenu ? closeIcon : hamburgerIcon} alt="menu"  className="cursor-pointer"/>
+            <img src={openMenu ? closeIcon : hamburgerIcon} alt="menu" className="cursor-pointer" />
 
           </button>
 

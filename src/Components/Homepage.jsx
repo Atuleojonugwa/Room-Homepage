@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import hero1 from "../assets/desktop-image-hero-1.jpg";
 import hero2 from "../assets/desktop-image-hero-2.jpg";
 import hero3 from "../assets/desktop-image-hero-3.jpg";
+import closeIcon from "../assets/icon-close.svg"
+import hamburgerIcon from "../assets/icon-hamburger.svg"
 import logo from "../assets/logo.svg";
 
 const SliderButton = ({ children, onClick }) => (
@@ -113,18 +115,19 @@ function Homepage() {
             className="md:hidden text-2xl"
             onClick={() => setOpenMenu(!openMenu)}
           >
-            {openMenu ? "✕" : "☰"}
+            <img src={openMenu ? closeIcon : hamburgerIcon} alt="menu"  className="cursor-pointer"/>
+
           </button>
 
 
-     {/* Center logo */}
-<img
-  src={logo}
-  alt="Room logo"
-  className={`mx-auto md:mx-0 transition-all duration-300
+          {/* Center logo */}
+          <img
+            src={logo}
+            alt="Room logo"
+            className={`mx-auto md:mx-0 transition-all duration-300
     ${openMenu ? "hidden" : "block"} md:block
   `}
-/>
+          />
 
 
           {/* Links */}

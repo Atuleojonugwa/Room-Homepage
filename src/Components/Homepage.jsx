@@ -62,6 +62,7 @@ const Slides = [
   },
 ];
 
+
 function Homepage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [openMenu, setOpenMenu] = useState(false);
@@ -93,53 +94,74 @@ function Homepage() {
   return (
     <div className="flex flex-col md:flex-row w-full md:h-150 sm:min-h-screen">
       <div className="relative w-full md:w-[58%] h-[50vh] md:h-auto">
-
         <img src={activeSlide.Image} alt="hero-Image" className="w-full h-full object-cover" />
-        <div className="absolute top-0 left-0 flex items-center  w-full pt-14 p-6 md:p-12 gap-12">
-          {/* Mobile menu icon */}
-          <button className="md:hidden text-white text-3xl" onClick={() => setOpenMenu(true)}>
-            ☰
+
+
+        <nav
+          className={`
+    fixed top-0 left-0 w-full h-20
+    gap-8
+    flex items-center justify-between
+    px-6 md:px-12
+  
+
+    ${openMenu ? "bg-white" : "bg-transparent"}
+    md:bg-transparent`}
+        >
+          {/* Left: close / hamburger */}
+          <button
+            className="md:hidden text-2xl"
+            onClick={() => setOpenMenu(!openMenu)}
+          >
+            {openMenu ? "✕" : "☰"}
           </button>
 
-          <img src={logo} alt="Room logo" className="mx-auto md:mx-0" />
-          <nav className="hidden md:flex gap-8">
+
+     {/* Center logo */}
+<img
+  src={logo}
+  alt="Room logo"
+  className={`mx-auto md:mx-0 transition-all duration-300
+    ${openMenu ? "hidden" : "block"} md:block
+  `}
+/>
+
+
+          {/* Links */}
+          <div
+            className={`
+     w-full
+    flex  gap-8 font-semibold
+    bg-white py-6
+    md:static md:bg-transparent md:py-0
+    ${openMenu ? "flex" : "hidden"}
+    md:flex md:items-center 
+  `}
+          >
+
             {["home", "shop", "about", "contact"].map((item) => (
               <a
                 key={item}
                 href={`#${item}`}
-                className="text-white text-sm font-semibold lowercase
-                    relative 
-                    after:content-[''] 
-                    after:absolute 
-                    after:left-0 
-                    after:-bottom-1.5 
-                    after:w-full 
-                    after:h-0.5 
-                    after:bg-white 
-                    after:scale-x-0 
-                    after:origin-center 
-                    after:transition-transform 
-                    after:duration-300 
-                    hover:after:scale-x-100
-                "
+                className="
+          text-black md:text-white
+          lowercase text-sm font-semibold
+          relative
+          after:content-['']
+          after:absolute after:left-0 after:-bottom-1.5
+          after:w-full after:h-0.5 after:bg-current
+          after:scale-x-0 after:transition-transform
+          hover:after:scale-x-100
+        "
               >
                 {item}
               </a>
             ))}
-          </nav>
-        </div>
-        {/* -------- Mobile Menu Overlay -------- */}
-        {openMenu && (
-          <div className="absolute top-0 left-0 w-full bg-white p-6 flex justify-between items-center z-50 shadow-lg">
-            <button onClick={() => setOpenMenu(false)} className="text-2xl">✕</button>
-            <nav className="flex gap-6 font-semibold">
-              {["home", "shop", "about", "contact"].map(i => (
-                <a key={i} className="uppercase">{i}</a>
-              ))}
-            </nav>
           </div>
-        )}
+        </nav>
+
       </div>
+
 
       <div className="w-full md:w-[42%] flex flex-col justify-center p-10 md:px-20 gap-5">
 
@@ -158,7 +180,8 @@ function Homepage() {
           </span>
         </button>
 
-        <div className="flex absolute bottom-0 left-0">
+
+        <div className="flex">
           <SliderButton onClick={prevSlide}>
             <Angleleft />
           </SliderButton>

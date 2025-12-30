@@ -92,12 +92,30 @@ function Homepage() {
     setCurrentSlide((prev) => (prev === 0 ? Slides.length - 1 : prev - 1));
   };
 
+// 
+
   const activeSlide = Slides[currentSlide];
   return (
-    <div className="flex flex-col md:flex-row w-full md:h-150 sm:min-h-screen">
+    <div className="flex flex-col md:flex-row w-full md:h-150 ">
 
-      <div className="relative w-full md:w-[58%]  md:h-auto">
-        <img src={activeSlide.Image} alt="hero-Image" className="w-full h-full object-cover" />
+      <div className="relative h-full md:static w-full md:w-[72%]">
+        <div className="h-full">
+          <img src={activeSlide.Image} alt="hero-Image" className="w-full h-full object-cover block" />
+          <div className="
+  flex
+  absolute bottom-0 right-0
+ md:hidden
+">
+
+            <SliderButton onClick={prevSlide}>
+              <Angleleft />
+            </SliderButton>
+
+            <SliderButton onClick={nextSlide}>
+              <Angleright />
+            </SliderButton>
+          </div>
+        </div>
 
 
         <nav
@@ -167,7 +185,7 @@ function Homepage() {
       </div>
 
 
-      <div className="w-full md:w-[42%] flex flex-col justify-center p-10 md:px-20 gap-5">
+      <div className="w-full md:relative md:w-[42%] flex flex-col justify-center p-10 md:px-20 gap-5">
 
         <h1 className="text-3xl md:text-4xl font-bold leading-tight">
           {activeSlide.title}
@@ -184,16 +202,18 @@ function Homepage() {
           </span>
         </button>
 
+        <div className="hidden md:absolute md:block bottom-0 left-0">
+          <div className="flex">
 
-        <div className="flex">
-          <SliderButton onClick={prevSlide}>
-            <Angleleft />
-          </SliderButton>
-
-          <SliderButton onClick={nextSlide}>
-            <Angleright />
-          </SliderButton>
+            <SliderButton onClick={prevSlide}>
+              <Angleleft />
+            </SliderButton>
+            <SliderButton onClick={nextSlide}>
+              <Angleright />
+            </SliderButton>
+          </div>
         </div>
+
       </div>
     </div>
   );

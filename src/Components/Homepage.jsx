@@ -91,9 +91,6 @@ function Homepage() {
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev === 0 ? Slides.length - 1 : prev - 1));
   };
-
-// 
-
   const activeSlide = Slides[currentSlide];
   return (
     <div className="flex flex-col md:flex-row w-full md:h-150 ">
@@ -106,7 +103,6 @@ function Homepage() {
   absolute bottom-0 right-0
  md:hidden
 ">
-
             <SliderButton onClick={prevSlide}>
               <Angleleft />
             </SliderButton>
@@ -116,7 +112,6 @@ function Homepage() {
             </SliderButton>
           </div>
         </div>
-
 
         <nav
           className={`
@@ -137,8 +132,6 @@ function Homepage() {
             <img src={openMenu ? closeIcon : hamburgerIcon} alt="menu" className="cursor-pointer" />
 
           </button>
-
-
           {/* Center logo */}
           <img
             src={logo}
@@ -147,8 +140,6 @@ function Homepage() {
     ${openMenu ? "hidden" : "block"} md:block
   `}
           />
-
-
           {/* Links */}
           <div
             className={`
@@ -181,10 +172,7 @@ function Homepage() {
             ))}
           </div>
         </nav>
-
       </div>
-
-
       <div className="w-full md:relative md:w-[42%] flex flex-col justify-center p-10 md:px-20 gap-5">
 
         <h1 className="text-3xl md:text-4xl font-bold leading-tight">
@@ -193,8 +181,6 @@ function Homepage() {
         <p className="text-(--grey-500) text-[12px] leading-4 font-medium mb-5">
           {activeSlide.text}
         </p>
-
-
         <button className="flex items-center gap-6 text-black uppercase tracking-[0.8em] text-sm font-bold hover:text-(--grey-500) cursor-pointer transition-colors duration-300">
           Shop Now
           <span>

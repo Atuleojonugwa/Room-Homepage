@@ -1,16 +1,38 @@
-# React + Vite
+## Room Homepage – Frontend Mentor Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a solution to the **Room Homepage** challenge on **Frontend Mentor**.  
+The goal of this challenge was to build a fully responsive landing page with a functional image slider and mobile navigation.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## React Compiler
+### The Challenge
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Users should be able to:
 
-## Expanding the ESLint configuration
+- View the optimal layout for the site depending on their device’s screen size
+- Navigate between hero slides using slider buttons
+- Open and close the mobile navigation menu
+- Experience smooth transitions and hover effects
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Built With
+
+- React
+- Vite
+- Tailwind CSS
+- JavaScript (ES6)
+- Frontend Mentor assets
+
+---
+
+## Features
+
+- Responsive layout for mobile, tablet, and desktop
+- Image slider with next / previous controls
+- Mobile hamburger menu with open/close functionality
+- Clean and reusable React components
+- Tailwind utility-based styling
+- Smooth hover and transition effects
